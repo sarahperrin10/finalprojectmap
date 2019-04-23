@@ -16,7 +16,7 @@ function preload(){
   }
   table = loadTable ("data/netflixshowsbystate.csv", "header"); //loads CSV file into table object
   map_img = loadImage('images/map.png')
-  grey_img = loadImage('images/tv.png')
+  grey_img = loadImage('images/tv.png') 
   old_tv = loadImage('images/old_tv.png')
   remote = loadImage('images/remote.png')
 }
@@ -30,7 +30,7 @@ function setup(){
 
 function draw(){
   background (255);
-  noCursor();
+  noCursor(); //removes cursor
 
   //displays grey background image
   image(grey_img, 613, 355, grey_img.width/1.2, grey_img.height/1.2);
@@ -51,7 +51,7 @@ function draw(){
 }
 
 
-  //calls "clicked" if mouse is pressed
+//calls "clicked" if mouse is pressed
 function mousePressed(){
     for (var i = 0; i<states.length; i++){
       states[i].clicked(mouseX,mouseY);
@@ -128,7 +128,7 @@ move(){
         push();
         fill (255, 0, 0);
         textSize(30);
-        textFont('Bangers');
+        textFont('Bangers'); //imported Google Font
         image (old_tv, 613, 320, old_tv.width*1.5, old_tv.height*1.5); //displays old tv
         text(this.show, this.m, this.l) //displays show's name in TV
         image(this.img, this.p, this.q, this.img.width/4, this.img.height/4); //displays show's image
