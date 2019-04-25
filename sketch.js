@@ -40,14 +40,19 @@ function draw(){
   image(map_img, 613, 355, map_img.width, map_img.height);
   pop();
 
-  //displays remote control as cursor
-  image(remote, mouseX, mouseY, remote.width/6, remote.height/6);
+  //calls function under the state array to show state abbreviations
+  for (var i = 0; i<states.length; i++){
+    states[i].showStates();
+  }
     
-  //calls the functions under the state array
+  //calls move and display functions under the state array
   for (var i = 0; i<states.length; i++){
     states[i].display();
     states[i].move();
   }
+
+  //displays remote control as cursor
+  image(remote, mouseX, mouseY, remote.width/6, remote.height/6);
 }
 
 
@@ -93,6 +98,7 @@ class State {
       this.l = 345;
       this.p = 555;
       this.q = 460;
+      this.isclicked = false;
   }
   
   
@@ -115,14 +121,19 @@ move(){
     this.q += random(-this.speed, this.speed);
   }
 
-  //displays the state abbreviations 
+//displays the state abbreviations 
+showStates(){
+  fill(0);
+  textSize(15);
+  textAlign(CENTER);
+  push();
+  text(this.name, this.x, this.y); //abbreviation
+  pop();
+  }
+
+ 
   display(){
-     fill(0);
-     textSize(15);
-     textAlign(CENTER);
-     push();
-     text (this.name, this.x, this.y); //abbreviation
-     pop();
+
      //if mouse is over the abbreviation then display show name and image
      if (this.isclicked) {
         push();
